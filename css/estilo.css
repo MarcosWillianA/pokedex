@@ -50,6 +50,16 @@ body {
     padding: 10px 0;
 }
 
+#pokemon-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 250px;
+    border: 1px solid orangered;
+    padding: 20px 0;
+    text-transform: capitalize;
+}
+
 #botoes-navegacao button {
     padding: 5px 10px;
     border: none;
