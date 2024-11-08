@@ -30,8 +30,15 @@ const fetchPokemon = async (identificadorPokemon) => {
 } 
 
 const preencherPokemonInfo = (pokemon) => {
-    pokemonImagem.src = pokemon['sprites']['versions']['generation-v']['black-white']['animated']['front-default'];
-    
+    pokemonImagem.src = pokemon['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];
+    pokemonNome.textContent = `${pokemon.name} (#${pokemon.id})`;
+    pokemonDescricao.textContent = `
+        Altura: ${pokemon.height / 10}m
+        | Peso: ${pokemon.weight / 10}kg
+        | Tipo: ${pokemon.types.map(typeInfo => typeInfo.type.name).join(', ')}
+    `;
+    idAtualPokemon = pokemon.id; //Atualiza o ID do pokemon atual 
+    atualizarNavegacaoBotoes(); //Atualiza o estado dos botões de navegação
 }
 
 const exibirLoading = () => {
