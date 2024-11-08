@@ -25,7 +25,7 @@ const fetchPokemon = async (identificadorPokemon) => {
     } catch (error) {
         exibirErro();
     } finally {
-
+        ocultarLoading();
     }
 } 
 
@@ -56,7 +56,7 @@ const exibirErro = () => {
     pokemonNome.textContent = '';
     pokemonDescricao.textContent = '';
     pokemonImagem.src = '';
-    mensagemErro.classList.add('esconder');
+    mensagemErro.classList.remove('esconder');
     pokemonInfo.classList.add('esconder');
     botoesNavegacao.classList.add('esconder');
 }

@@ -21,6 +21,7 @@ body {
 
 #mensagem-boas-vindas h1 {
     text-align: center;
+    margin-bottom: 20px;
 }
 
 #campo-pesquisa {
@@ -72,6 +73,10 @@ body {
     height: 250px;
     padding: 20px 0;
     text-transform: capitalize;
+}
+
+#pokemon-info img {
+    align-self: center;
 }
 
 #botoes-navegacao button {
