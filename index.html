@@ -7,12 +7,39 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon/favicon-16x16.png" type="image/x-icon">
     <link rel="stylesheet" href="css/estilo.css">
     <title>Pokedex</title>
 </head>
 <body>
     <main>
-        
+        <div id="container">
+            <div id="mensagem-boas-vindas">
+                <h1>Pokedex</h1>
+                <p>Digite o nome ou o ID do Pokémon que você quer buscar</p>
+            </div>
+            <div id="campo-pesquisa">
+                <input type="text" name="pesquisar" id="pesquisar" placeholder="Nome ou ID do Pokémon">
+                <button id="botao-pesquisar">Buscar</button>
+            </div>
+            <div id="pokedex">
+                <div id="mensagem-loading" class="esconder">
+                    <p>Carregando</p>
+                </div>
+                <div id="pokemon-info" class="esconder">
+                    <img id="pokemon-imagem" src="" alt="Imagem do Pokemon">
+                    <h2 id="pokemon-nome"><!--Inserido dinamicamente--></h2>
+                    <p id="pokemon-descricao"></p>
+                </div>
+                <div id="botoes-navegacao" class="esconder">
+                    <button id="botao-anterior">Pokemon Anterior</button>
+                    <button id="botao-proximo">Próximo Pokemon</button>
+                </div>
+                <div id="mensagem-erro" class="esconder">
+                    <p>404 NOT FOUND - Pokémon não encontrado</p>
+                </div>
+            </div>
+        </div>
     </main>
     <script src="script/pokedex.js"></script>
 </body>
