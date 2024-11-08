@@ -4,13 +4,13 @@ const botaoAnterior = document.querySelector('#botao-anterior');
 const botaoProximo = document.querySelector('#botao-proximo');
 const pokemonInfo = document.querySelector('#pokemon-info');
 const botoesNavegacao = document.querySelector('#botoes-navegacao');
-const pokemonImagem = document.querySelector('pokemon-imagem');
+const pokemonImagem = document.querySelector('#pokemon-imagem');
 const pokemonNome = document.querySelector('#pokemon-nome');
-const pokemonDescricao = document.querySelector('#pokemonDescricao');
+const pokemonDescricao = document.querySelector('#pokemon-descricao');
 const mensagemErro = document.querySelector('#mensagem-erro');
 const mensagemLoading = document.querySelector('#mensagem-loading');
 
-let idPokemonAtual = 1;
+let idAtualPokemon = 1;
 
 const fetchPokemon = async (identificadorPokemon) => {
     exibirLoading();
@@ -23,17 +23,26 @@ const fetchPokemon = async (identificadorPokemon) => {
         pokemonInfo.classList.remove('esconder');
         botoesNavegacao.classList.remove('esconder');
     } catch (error) {
-        exibirerro();
+        exibirErro();
     } finally {
 
     }
 } 
+
+const preencherPokemonInfo = (pokemon) => {
+    pokemonImagem.src = pokemon['sprites']['versions']['generation-v']['black-white']['animated']['front-default'];
+    
+}
 
 const exibirLoading = () => {
     mensagemLoading.classList.remove('esconder');
     pokemonInfo.classList.add('esconder');
     mensagemErro.classList.add('erro');
     botoesNavegacao.classList.add('erro');
+}
+
+const ocultarLoading = () => {
+    mensagemLoading.classList.add('esconder');
 }
 
 const exibirErro = () => {
@@ -44,3 +53,39 @@ const exibirErro = () => {
     pokemonInfo.classList.add('esconder');
     botoesNavegacao.classList.add('esconder');
 }
+
+const atualizarNavegacaoBotoes = () => {
+    botaoAnterior.disabled = (idAtualPokemon <= 1); 
+}
+
+const atualizarBotaoPesquisar = () => {
+    botaoPesquisar.disabled = !pesquisar.value.trim();
+}
+
+botaoPesquisar.addEventListener('click', () => {
+    const query = pesquisar.value.trim().toLowerCase();
+    if (query) {
+        fetchPokemon(query);
+    }
+})
+
+pesquisar.addEventListener('input', atualizarBotaoPesquisar);
+
+pesquisar.addEventListener('keypress', event => {
+    if (event.key === 'Enter') {
+        botaoPesquisar.click();
+    }
+})
+
+botaoAnterior.addEventListener('click', () => {
+    if (idAtualPokemon > 1) {
+        fetchPokemon(idAtualPokemon - 1);
+    }
+})
+
+botaoProximo.addEventListener('click', () => {
+    fetchPokemon(idAtualPokemon + 1);
+})
+
+fetchPokemon(idAtualPokemon); // Carregando o primeiro pokemon com id = 1 por padrão;
+atualizarBotaoPesquisar(); //Desabilita o botão de busca
